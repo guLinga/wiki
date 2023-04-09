@@ -222,9 +222,7 @@ Fn extends (...args:infer Args)=>infer Result ? (...args:[...Args,Arg])=>Result 
 
 - 把索引类型的Key变成大写⭐
 ```ts
-type KeyUp<Obj extends Object> = {
-  [Key in keyof Obj as Uppercase<Key & string>]:Obj[Key];
-}
+type KeyUp<Obj extends Object> = {[Key in keyof Obj as Uppercase<Key & string>]:Obj[Key]}
 type test = UpKey<{
   a: number,
   b: string
@@ -233,9 +231,7 @@ type test = UpKey<{
 
 - Record，typescript内置了Record，用来创建索引类型。⭐
 ```ts
-type _Record<K extends keyof any, T> = {
-  [P in K]: T
-}
+type _Record<K extends keyof any, T> = {[P in K]: T}
 ```
 
 - 将索引转换成只读
@@ -517,7 +513,7 @@ type res = Test<1 | 'a'>;//type res = 1 | 2
 - boolean也是联合类型，是false | true。
 ```ts
 type Test<T> = T extends true ? 1 : 2;
-type res = Test<boolean>;//type res = false | true
+type res = Test<boolean>;//type res = 1 | 2
 ```
 
 - any类型如果在条件类型的左边，则返回trueType和falseType的联合类型。
